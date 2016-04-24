@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 
 public class StageManager : MonoBehaviour {
-    public enum Stage { Library, EvelynsAdventure }
+    public enum Stage { Library, EvelynsAdventure, NigelsAdventure }
 
     public static StageManager Instance;
 
