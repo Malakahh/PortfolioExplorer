@@ -754,6 +754,47 @@ RectTransform:
   m_PrefabParentObject: {fileID: 22463496, guid: 85b60d126fa75d84489de14943a2b1ea,
     type: 2}
   m_PrefabInternal: {fileID: 529849011}
+--- !u!1 &2070449602
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 2070449604}
+  - 114: {fileID: 2070449603}
+  m_Layer: 0
+  m_Name: TextureManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2070449603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2070449602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af9f4f075ac56a9459b3cb85fb56074c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NigelsAdventure:
+    Test: {fileID: 0}
+--- !u!4 &2070449604
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2070449602}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2715.4658, y: 65.303635, z: 24.64682}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
 --- !u!1 &2078644855 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 119652, guid: cbd13c32e9e736c43ba653ea2d9839b7, type: 2}
