@@ -19,6 +19,7 @@ public class StageManager : MonoBehaviour {
 
     void Start()
     {
+        ParchmentSection.InitializeStatics();
         ChangeStage(Stage.Library);
     }
 
