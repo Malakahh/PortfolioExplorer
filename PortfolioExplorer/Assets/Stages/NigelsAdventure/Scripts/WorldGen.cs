@@ -97,7 +97,7 @@ namespace NigelsAdventure
                     if (t.ParchmentSection.Definition[x][y] != 0)
                     {
                         BoxCollider2D col = t.gameObject.AddComponent<BoxCollider2D>();
-
+                        col.isTrigger = true;
                         col.size = new Vector2(colWidth, colHeight);
                         col.offset = new Vector2(colWidth * x - ((x == 0) ? 0 : 0.5f - 0.5f * colWidth), y * colHeight - 0.4f);
                     }

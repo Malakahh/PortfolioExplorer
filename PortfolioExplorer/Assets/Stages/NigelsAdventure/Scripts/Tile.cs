@@ -18,5 +18,10 @@ namespace NigelsAdventure
 	    void Update () {
 	
 	    }
+
+        void OnTriggerEnter(Collider col)
+        {
+            Debug.Log("OnTriggerEnter");
+        }
     }
 }
