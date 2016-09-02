@@ -6,100 +6,61 @@ namespace NigelsAdventure
     [System.Serializable]
     public class ParchmentSection
     {
+        #region Tiles
+        public static readonly short water = 0;
+        public static readonly short island = 1;
+        #endregion
+
         #region Shapes
         #region Basic
-        public static ParchmentSection fullWater;
-        public static ParchmentSection basicIsland_0;
-        public static ParchmentSection basicIsland_1;
-        public static ParchmentSection basicIsland_2;
-        public static ParchmentSection basicIsland_3;
-        public static ParchmentSection basicIsland_4;
-        public static ParchmentSection basicIsland_5;
-        public static ParchmentSection basicIsland_6;
-        public static ParchmentSection basicIsland_7;
-        public static ParchmentSection basicIsland_8;
-        public static ParchmentSection basicIsland_9;
+        public static readonly short[] fullWater = new short[] { water, water, water, water, water };
+        public static readonly short[] basicIsland_0 = new short[] { water, island, island, island, island };
+        public static readonly short[] basicIsland_1 = new short[] { island, water, island, island, island };
+        public static readonly short[] basicIsland_2 = new short[] { island, island, water, island, island };
+        public static readonly short[] basicIsland_3 = new short[] { island, island, island, water, island };
+        public static readonly short[] basicIsland_4 = new short[] { island, island, island, island, water };
+        public static readonly short[] basicIsland_5 = new short[] { water, island, island, island, water };
+        public static readonly short[] basicIsland_6 = new short[] { island, water, island, water, island };
+        public static readonly short[] basicIsland_7 = new short[] { island, island, water, island, island };
+        public static readonly short[] basicIsland_8 = new short[] { water, water, water, island, island };
+        public static readonly short[] basicIsland_9 = new short[] { island, island, water, water, water };
         #endregion
 
         #region Complex
-        public static ParchmentSection start;
-        public static ParchmentSection easySlalom_0;
-        public static ParchmentSection hardSlalom_0;
-        public static ParchmentSection easySlalom_1;
-        public static ParchmentSection hardSlalom_1;
+        public static readonly short[][] easySlalom_0 = new short[][] { fullWater, fullWater, basicIsland_9, fullWater, fullWater, basicIsland_8, fullWater, fullWater};
+        public static readonly short[][] hardSlalom_0 = new short[][] { fullWater, fullWater, basicIsland_0, fullWater, fullWater, basicIsland_4, fullWater, fullWater};
+        public static readonly short[][] easySlalom_1 = new short[][] { fullWater, fullWater, basicIsland_8, fullWater, fullWater, basicIsland_9, fullWater, fullWater};
+        public static readonly short[][] hardSlalom_1 = new short[][] { fullWater, fullWater, basicIsland_4, fullWater, fullWater, basicIsland_0, fullWater, fullWater};
+        public static readonly short[][] largeWater = new short[][] { fullWater, fullWater, fullWater, fullWater, fullWater, fullWater, fullWater, fullWater, fullWater, fullWater, fullWater, fullWater, fullWater, fullWater};
         #endregion
         #endregion
 
-        [SerializeField]
-        public List<short[]> Definition;
-        public Texture2D Texture;
-
-        public ParchmentSection(params short[][] args)
-        {
-            Definition = new List<short[]>(args);
-
-            GenerateTexture();
-        }
-
-        public ParchmentSection(params ParchmentSection[] args)
-        {
-            Definition = new List<short[]>();
-
-            for (int i = 0; i < args.Length; i++)
-            {
-                Definition.AddRange(args[i].Definition);
-            }
-
-            GenerateTexture();
-        }
-
-        void GenerateTexture()
+        public static Texture2D GenerateTexture(params short[][] args)
         {
             int width = TextureManager.Instance.NigelsAdventure.Tiles[0].width;
             int height = TextureManager.Instance.NigelsAdventure.Tiles[0].height;
 
-            Texture = new Texture2D(
-                Definition.Count * width,
-                Definition[0].Length * height
+            Texture2D texture = new Texture2D(
+                args.Length * width,
+                args[0].Length * height
             );
 
-            for (int x = 0; x < Definition.Count; x++)
+            for (int x = 0; x < args.Length; x++)
             {
-                for (int y = 0; y < Definition[x].Length; y++)
+                for (int y = 0; y < args[x].Length; y++)
                 {
-                    int texId = Definition[x][y];
-
-                    Texture.SetPixels(
+                    texture.SetPixels(
                         x * width,
                         y * height,
                         width,
                         height,
-                        TextureManager.Instance.NigelsAdventure.Tiles[texId].GetPixels()
+                        TextureManager.Instance.NigelsAdventure.Tiles[args[x][y]].GetPixels()
                     );
                 }
             }
 
-            Texture.Apply();
-        }
-
-        public static void InitializeStatics()
-        {
-            fullWater = new ParchmentSection(new short[] { 0, 0, 0, 0, 0 });
-            basicIsland_0 = new ParchmentSection(new short[] { 0, 1, 1, 1, 1 });
-            basicIsland_1 = new ParchmentSection(new short[] { 1, 0, 1, 1, 1 });
-            basicIsland_2 = new ParchmentSection(new short[] { 1, 1, 0, 1, 1 });
-            basicIsland_3 = new ParchmentSection(new short[] { 1, 1, 1, 0, 1 });
-            basicIsland_4 = new ParchmentSection(new short[] { 1, 1, 1, 1, 0 });
-            basicIsland_5 = new ParchmentSection(new short[] { 0, 1, 1, 1, 0 });
-            basicIsland_6 = new ParchmentSection(new short[] { 1, 0, 1, 0, 1 });
-            basicIsland_7 = new ParchmentSection(new short[] { 1, 1, 0, 1, 1 });
-            basicIsland_8 = new ParchmentSection(new short[] { 0, 0, 0, 1, 1 });
-            basicIsland_9 = new ParchmentSection(new short[] { 1, 1, 0, 0, 0 });
-            easySlalom_0 = new ParchmentSection(fullWater, fullWater, basicIsland_9, fullWater, fullWater, basicIsland_8, fullWater, fullWater);
-            hardSlalom_0 = new ParchmentSection(fullWater, fullWater, basicIsland_0, fullWater, fullWater, basicIsland_4, fullWater, fullWater);
-            easySlalom_1 = new ParchmentSection(fullWater, fullWater, basicIsland_8, fullWater, fullWater, basicIsland_9, fullWater, fullWater);
-            hardSlalom_1 = new ParchmentSection(fullWater, fullWater, basicIsland_4, fullWater, fullWater, basicIsland_0, fullWater, fullWater);
-            start = new ParchmentSection(fullWater, fullWater, fullWater, fullWater, fullWater, fullWater, fullWater);
+            texture.Apply();
+            return texture;
         }
     }
 }
